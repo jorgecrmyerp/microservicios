@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date) 2022-06-08 MICROSERVICIO USUARIOS Y ALTA DE EUREKA SERVER"
+message="$(date) 2022-06-08 MICROSERVICIO USUARIO CONECTA CON SERVIDOR EUREKA"
 fi
 
 start=`date +%s`
