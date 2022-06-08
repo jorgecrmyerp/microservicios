@@ -11,9 +11,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
