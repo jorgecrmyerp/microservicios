@@ -35,7 +35,7 @@ public class AlumnoController {
 		Optional<Alumno> o = alumnoService.findById(id);
 
 		// si no lo encuentra devuelve not found
-		if (o.isPresent()) {
+		if (!o.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok().body(o.get());
@@ -54,9 +54,11 @@ public class AlumnoController {
 	public ResponseEntity<?> editar(@RequestBody Alumno alumno, @PathVariable Long id) {
 
 		Optional<Alumno> o = alumnoService.findById(id);
-
+			System.out.println("put id->"+id);
 		// si no lo encuentra devuelve not found
-		if (o.isPresent()) {
+			
+			
+		if (!o.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 
@@ -75,7 +77,7 @@ public class AlumnoController {
 		Optional<Alumno> o = alumnoService.findById(id);
 
 		// si no lo encuentra devuelve not found
-		if (o.isPresent()) {
+		if (!o.isPresent()) {
 			return ResponseEntity.notFound().build();//404
 		}		
 		alumnoService.deleteById(id);
