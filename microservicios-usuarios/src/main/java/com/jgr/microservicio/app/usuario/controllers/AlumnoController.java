@@ -2,25 +2,52 @@ package com.jgr.microservicio.app.usuario.controllers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jgr.microservicio.app.usuario.models.entity.Alumno;
 import com.jgr.microservicio.app.usuario.models.service.IAlumnoService;
+import com.jgr.microservicio.commons.controllers.CommonController;
 
 @RestController
-public class AlumnoController {
+public class AlumnoController extends CommonController<Alumno,IAlumnoService>{
 
+	@PutMapping("/{id}")
+	public ResponseEntity<?> editar(@RequestBody Alumno alumno, @PathVariable Long id) {
+
+		Optional<Alumno> o = service.findById(id);//EL SERVICE VIENE DESDE COMMONCONTROLLER
+			System.out.println("put id->"+id);
+		// si no lo encuentra devuelve not found
+			
+			
+		if (!o.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Alumno alumnoDB = o.get();
+		alumnoDB.setNombre(alumno.getNombre());
+		alumnoDB.setApellido(alumno.getApellido());
+		alumnoDB.setEmail(alumno.getEmail());
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(alumnoDB));
+
+	}
+	
+	/*
+	
+	LA LISTA,ALTA,BORRADO LA VAMOS A HACER EN LA CLASE GENERICA,YA QUE ES INDEPENDIENTE DEL OBJETO
+	LA MODIFICACION NO,PORQUE CADA OBJETO TIENE PROPIEDADES UNICAS
+	EL SERVICIO LO RECIBIMOS COMO PARAMETRO,PORQUE COMO HEREDA DE COMMONCONTROLLER YA LO RECIBE COMO PARAMETRO
+	
 	@Autowired
 	private IAlumnoService alumnoService;
+	
+	
+	
 
 	// sin ruta devolvemos un generico con ok y la lista de alumnos y un 200 que es
 	// ok
@@ -50,26 +77,7 @@ public class AlumnoController {
 
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> editar(@RequestBody Alumno alumno, @PathVariable Long id) {
-
-		Optional<Alumno> o = alumnoService.findById(id);
-			System.out.println("put id->"+id);
-		// si no lo encuentra devuelve not found
-			
-			
-		if (!o.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Alumno alumnoDB = o.get();
-		alumnoDB.setNombre(alumno.getNombre());
-		alumnoDB.setApellido(alumno.getApellido());
-		alumnoDB.setEmail(alumno.getEmail());
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(alumnoService.save(alumnoDB));
-
-	}
+	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable Long id) {
@@ -84,6 +92,6 @@ public class AlumnoController {
 		
 		return ResponseEntity.noContent().build();
 
-	}
+	}*/
 
 }
