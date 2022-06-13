@@ -2,8 +2,8 @@ package com.jgr.microservicio.app.usuario.models.service;
 
 import org.springframework.stereotype.Service;
 
-import com.jgr.microservicio.app.usuario.models.entity.Alumno;
 import com.jgr.microservicio.app.usuario.models.repository.IAlumnoRepository;
+import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
 import com.jgr.microservicio.commons.services.CommonServiceImpl;
 
 

@@ -19,8 +19,9 @@
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
-	<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR COMMONS MICROSERVICIOS QUE ES EL QUE VA A LLAMAR A ESTE
-	AL ESTAR DEFINIDO COMO GENERICO COMO PARAMETROS DE ENTRADA TIENE LA INTERFAZ Y LA ENTIDAD -->
+		<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR COMMONS MICROSERVICIOS QUE 
+			ES EL QUE VA A LLAMAR A ESTE AL ESTAR DEFINIDO COMO GENERICO COMO PARAMETROS 
+			DE ENTRADA TIENE LA INTERFAZ Y LA ENTIDAD -->
 		<dependency>
 			<groupId>com.jgr.microservicio.commons</groupId>
 			<artifactId>commons-microservicios</artifactId>
@@ -33,6 +34,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jgr.microservicio.commons.alumnos</groupId>
+			<artifactId>commons-alumnos</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

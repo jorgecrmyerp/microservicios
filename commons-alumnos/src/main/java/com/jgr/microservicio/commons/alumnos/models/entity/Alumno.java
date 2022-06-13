@@ -1,4 +1,4 @@
-package com.jgr.microservicio.app.usuario.models.entity;
+package com.jgr.microservicio.commons.alumnos.models.entity;
 
 import java.util.Date;
 
@@ -12,14 +12,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.extern.slf4j.Slf4j;
+
 
 @Entity
 @Table(name="alumnos")
 //equivalente a usar @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstrutor 
 //@Data
 //@Slf4j Creates log = org.slf4j.LoggerFactory.getLogger(LogExample.class);
-@Slf4j
+
 public class Alumno {
 
 	@Id
