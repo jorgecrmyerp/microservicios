@@ -3,7 +3,6 @@ package com.jgr.microservicio.commons.services;
 import java.util.Optional;
 
 
-
 //EL <E> indica que es una clase generica
 public interface ICommonService<E> {
 	

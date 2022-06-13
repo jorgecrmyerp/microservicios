@@ -1,4 +1,4 @@
-package com.jgr.microservicio.app.usuario.models.entity;
+package com.jgr.microservicio.app.cursos.models.entity;
 
 import java.util.Date;
 
@@ -12,37 +12,24 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Entity
-@Table(name="alumnos")
-//equivalente a usar @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstrutor 
-//@Data
-//@Slf4j Creates log = org.slf4j.LoggerFactory.getLogger(LogExample.class);
-@Slf4j
-public class Alumno {
-
+@Table(name="cursos")
+public class Curso {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nombre;
-	private String apellido;
-	private String email;
+	
 	@Column(name="create_at")
 	@Temporal(TemporalType.TIMESTAMP)//es un timestamp
 	private Date createAt;
 	
 	
-	
-	
-	public Alumno() {
-		super();
-	}
 
-	//para que guarde la fecha actual
-	@PrePersist	
-	public void prePersist() {
-		this.createAt= new Date();
+	public Curso() {
+		super();
 	}
 
 	/**
@@ -74,34 +61,6 @@ public class Alumno {
 	}
 
 	/**
-	 * @return the apellido
-	 */
-	public String getApellido() {
-		return apellido;
-	}
-
-	/**
-	 * @param apellido the apellido to set
-	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
 	 * @return the createAt
 	 */
 	public Date getCreateAt() {
@@ -114,10 +73,11 @@ public class Alumno {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-
 	
-
 	
+	@PrePersist
+	public void prePersist() {
+		this.createAt= new Date();
+	}
 
-	
 }

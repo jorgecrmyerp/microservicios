@@ -9,18 +9,19 @@
 		<version>2.7.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jgr.microservicio.app.usuario</groupId>
-	<artifactId>microservicios-usuarios</artifactId>
+	<groupId>com.jgr.microservicio.app.cursos</groupId>
+	<artifactId>microservicio-cursos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservicios-usuarios</name>
+	<name>microservicio-cursos</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
-	<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR COMMONS MICROSERVICIOS QUE ES EL QUE VA A LLAMAR A ESTE
-	AL ESTAR DEFINIDO COMO GENERICO COMO PARAMETROS DE ENTRADA TIENE LA INTERFAZ Y LA ENTIDAD -->
+		<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR COMMONS MICROSERVICIOS QUE 
+			ES EL QUE VA A LLAMAR A ESTE AL ESTAR DEFINIDO COMO GENERICO COMO PARAMETROS 
+			DE ENTRADA TIENE LA INTERFAZ Y LA ENTIDAD -->
 		<dependency>
 			<groupId>com.jgr.microservicio.commons</groupId>
 			<artifactId>commons-microservicios</artifactId>
@@ -33,6 +34,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -47,40 +52,28 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- CON ESTO SE REGISTRA COMO CLIENTE DE EUREKA -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 			<!-- Pour contourner un bug à la génération par Spring-boot 2.4.x : Failed 
 				to execute goal org.apache.maven.plugins:maven-resources-plugin:3.2.0:resources 
@@ -94,15 +87,4 @@
 		</plugins>
 	</build>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 </project>

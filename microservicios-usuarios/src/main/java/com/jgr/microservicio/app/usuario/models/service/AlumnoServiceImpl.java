@@ -14,8 +14,6 @@ public class AlumnoServiceImpl extends CommonServiceImpl<Alumno,IAlumnoRepositor
 	
 
 
-
-
 /*	
 antes de extender de commons, cuando lo hacemos tampoco hace falta inyectar la dependencia del repositorio de alumnos,
 lo pasamos como parametro de entrada.
