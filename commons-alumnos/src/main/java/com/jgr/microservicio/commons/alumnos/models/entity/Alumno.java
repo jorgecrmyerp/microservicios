@@ -11,7 +11,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+//lo sacamos a un servicio externo para que el resto de servicios puedan acceder a el
+//solo vamos a necesitar el jpa para las anotaciones,es un servicio de libreria,no se va a
+//ejecutar como hacemos con cursos o con usuarios
 
 
 @Entity
@@ -31,7 +33,6 @@ public class Alumno {
 	@Column(name="create_at")
 	@Temporal(TemporalType.TIMESTAMP)//es un timestamp
 	private Date createAt;
-	
 	
 	
 	
@@ -115,7 +116,17 @@ public class Alumno {
 		this.createAt = createAt;
 	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(this==obj) {return true;}
+		
+		if (!(obj instanceof Alumno)){return false;}
+		
+		//convertimos de obj a alumno		
+		Alumno a =(Alumno) obj;	
+		return this.id!=null && this.id.equals(a.getId());
+	}
 
 	
 

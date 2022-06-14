@@ -12,8 +12,10 @@ import com.jgr.microservicio.commons.services.CommonServiceImpl;
 //implementa icursoservice, que a su vez hereda de la interfaz ICommonService que es la que 
 //por medio del CommonService tiene definidos los metodos comunes a todas las clases: borrar,listar, buscar por id
 //y guardar.La unica que es diferente es la de atualizar,porque dependiendo de cada entidad pueden ser campos distintos
+//IGUAL QUE LO QUE HEMOS HECHO EN USUARIOS
 
-@Service //para que se registre como componente spring y podamos inyectarlo
+//para que se registre como componente spring y podamos inyectarlo
+@Service 
 public class CursoServiceImpl extends CommonServiceImpl<Curso, ICursoRepository> implements ICursoService {
 
 
