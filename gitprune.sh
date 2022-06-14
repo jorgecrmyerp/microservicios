@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date) 2022-06-13 CREAMOS LA ENTIDAD CURSOS"
+message="$(date) 2022-06-14 NUEVA CARPETA DOCUMENTACION "
 fi
 
 start=`date +%s`
