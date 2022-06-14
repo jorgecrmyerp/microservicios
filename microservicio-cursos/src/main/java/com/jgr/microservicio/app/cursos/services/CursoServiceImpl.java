@@ -1,6 +1,7 @@
 package com.jgr.microservicio.app.cursos.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jgr.microservicio.app.cursos.models.entity.Curso;
 import com.jgr.microservicio.app.cursos.repository.ICursoRepository;
@@ -17,6 +18,15 @@ import com.jgr.microservicio.commons.services.CommonServiceImpl;
 //para que se registre como componente spring y podamos inyectarlo
 @Service 
 public class CursoServiceImpl extends CommonServiceImpl<Curso, ICursoRepository> implements ICursoService {
+
+	
+	//AL HEREDAR DE CommonServiceImpl repository es el repositorio.
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Curso findCursoByAlumnoId(Long id) {
+		return repository.findCursoByAlumnoId(id);
+	}
 
 
 }

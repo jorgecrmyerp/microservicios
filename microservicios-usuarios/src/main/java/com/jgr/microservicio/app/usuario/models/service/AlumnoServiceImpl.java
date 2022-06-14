@@ -1,6 +1,11 @@
 package com.jgr.microservicio.app.usuario.models.service;
 
+import java.util.List;
+
+
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jgr.microservicio.app.usuario.models.repository.IAlumnoRepository;
 import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
@@ -11,7 +16,17 @@ import com.jgr.microservicio.commons.services.CommonServiceImpl;
 //que es alumno y el repositorio que vamos a usar.
 //y a su vez heredamos de su interfaz de servicio 
 
-public class AlumnoServiceImpl extends CommonServiceImpl<Alumno,IAlumnoRepository >implements IAlumnoService{}
+public class AlumnoServiceImpl extends CommonServiceImpl<Alumno,IAlumnoRepository >implements IAlumnoService{
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Alumno> findByNombreOrApellido(String texto) {
+		
+		//repository lo hemos importado del generico CommonServiceImpl
+		
+		return repository.findByNombreOrApellido(texto);
+		
+	}}
 	
 /*	
 antes de extender de commons, cuando lo hacemos tampoco hace falta inyectar la dependencia del repositorio de alumnos,

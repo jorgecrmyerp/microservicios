@@ -5,4 +5,8 @@ import com.jgr.microservicio.commons.services.ICommonService;
 
 //IGUAL QUE USUARIOS,REVISAR LOS COMENTARIOS
 
-public interface ICursoService  extends ICommonService<Curso>{}
+public interface ICursoService  extends ICommonService<Curso>{
+	
+	public Curso findCursoByAlumnoId(Long id);
+	
+}

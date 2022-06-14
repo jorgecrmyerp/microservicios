@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,8 @@ import com.jgr.microservicio.commons.controllers.CommonController;
 @RestController
 public class CursoController extends CommonController<Curso, ICursoService> {
 
+	
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Curso curso, @PathVariable Long id) {
 
@@ -39,6 +42,8 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 
 	}
 
+	
+		//localhost:8090/api/cursos/3/asignar-alumnos
 	@PutMapping("/{id}/asignar-alumnos")
 	public ResponseEntity<?> asignarAlumnos(@RequestBody List<Alumno> alumnos,@PathVariable Long id) {
 		Optional<Curso> o = this.service.findById(id);
@@ -58,7 +63,7 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cursoDB));
 		}
 	
-	
+	//localhost:8090/api/cursos/1/eliminar-alumno
 	@PutMapping("/{id}/eliminar-alumno")
 	public ResponseEntity<?> eliminarAlumno(@RequestBody Alumno alumno,@PathVariable Long id) {
 		Optional<Curso> o = this.service.findById(id);
@@ -74,5 +79,17 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(service.save(cursoDB));
 		}
+	
+	
+	//localhost:8090/api/cursos/busca-curso-alumno/1
+	@GetMapping("busca-curso-alumno/{id}")
+	public ResponseEntity<?> buscarCursoDeAlumnoporId(@PathVariable Long id) {
+		
+		Curso curso = service.findCursoByAlumnoId(id);
+		
+		return ResponseEntity.ok(curso);
+	}
+
+	
 	
 }
