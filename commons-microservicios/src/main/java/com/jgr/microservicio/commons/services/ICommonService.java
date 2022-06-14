@@ -10,7 +10,7 @@ public interface ICommonService<E> {
 	
 	public Optional<E> findById(Long id);
 	
-	public E save(E alumno);
+	public E save(E entidad);
 	
 	public void deleteById(Long id);
 	

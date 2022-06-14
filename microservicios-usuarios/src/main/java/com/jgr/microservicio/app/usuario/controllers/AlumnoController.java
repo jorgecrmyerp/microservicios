@@ -13,13 +13,21 @@ import com.jgr.microservicio.app.usuario.models.service.IAlumnoService;
 import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
 import com.jgr.microservicio.commons.controllers.CommonController;
 
+
+//hereda de commoncontroller que es generico y como parametros de entrada se le pasa
+//la entidad y la capa de servicio. Hereda de commoncontroller que tiene definidos
+//los metodos comunes ,todos menos actualizar porque esto tiene propiedades distintas
+//segun la entidad. Como parametros le pasamos la entidad,ALUMNO, y la capa de servicio, que
+//es IAlumnoService, que a su vez hereda ICommonService
+
 @RestController
 public class AlumnoController extends CommonController<Alumno,IAlumnoService>{
 
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Alumno alumno, @PathVariable Long id) {
 
-		Optional<Alumno> o = service.findById(id);//EL SERVICE VIENE DESDE COMMONCONTROLLER
+		//EL SERVICE VIENE DESDE COMMONCONTROLLER
+		Optional<Alumno> o = service.findById(id);
 			System.out.println("put id->"+id);
 		// si no lo encuentra devuelve not found
 			

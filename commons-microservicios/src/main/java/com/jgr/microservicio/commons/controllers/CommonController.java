@@ -14,11 +14,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.jgr.microservicio.commons.services.ICommonService;
 
 
-//ESTE MICROSERVICIOS NO HAY QUE LEVANTARLO,ES INVOCADO DESDE EL QUE LO USA,COMO PUEDE SER USUARIOS
+/*
+ * CAPA DE SERVICIO Y CONTROLADOR GENERICO REST
+ * 
+ * 
+ * */
+
+//ESTE MICROSERVICIOS NO HAY QUE LEVANTARLO,ES INVOCADO DESDE EL QUE LO USA,COMO PUEDE SER USUARIOS.
+//SE QUITA DEL POM EL SPRING-BOOT-MAVEN-PLUGIN
 
 
 //le entra una entidad E y un servicio S, este ultimo hereda de ICommonService,que como es generico tambien recibe una
-//entidad como parametro de entrada
+//entidad como parametro de entrada.
+//como parametros le va a entrar una entidad E,un servicio S que hereda de CommonService
+//que a su vez tiene el tipo generico E.
 public class CommonController<E,S extends ICommonService<E>> {
 
 	

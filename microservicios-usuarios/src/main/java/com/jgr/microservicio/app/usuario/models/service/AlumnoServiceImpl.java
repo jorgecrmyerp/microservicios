@@ -6,14 +6,13 @@ import com.jgr.microservicio.app.usuario.models.repository.IAlumnoRepository;
 import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
 import com.jgr.microservicio.commons.services.CommonServiceImpl;
 
-
-//
 @Service
+//heredamos de commonserviceimpl que es generica,para usarla le pasamos la entidad
+//que es alumno y el repositorio que vamos a usar.
+//y a su vez heredamos de su interfaz de servicio 
 
 public class AlumnoServiceImpl extends CommonServiceImpl<Alumno,IAlumnoRepository >implements IAlumnoService{}
 	
-
-
 /*	
 antes de extender de commons, cuando lo hacemos tampoco hace falta inyectar la dependencia del repositorio de alumnos,
 lo pasamos como parametro de entrada.
