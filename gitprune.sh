@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date) 2022-06-15 34 +capa servicio y controller  "
+message="$(date) 2022-06-15 36 ANTES DE RELACIONAR EXAMEN CON CURSO  "
 fi
 
 start=`date +%s`
