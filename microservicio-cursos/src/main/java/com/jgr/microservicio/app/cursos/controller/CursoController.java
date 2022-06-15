@@ -26,6 +26,7 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Curso curso, @PathVariable Long id) {
 
+		
 		// EL SERVICE VIENE DESDE COMMONCONTROLLER
 		Optional<Curso> o = this.service.findById(id);
 
@@ -49,7 +50,7 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 		Optional<Curso> o = this.service.findById(id);
 
 		System.out.println("put id->" + id);
-		// si no lo encuentra devuelve not found
+
 
 		if (!o.isPresent()) {
 			return ResponseEntity.notFound().build();
