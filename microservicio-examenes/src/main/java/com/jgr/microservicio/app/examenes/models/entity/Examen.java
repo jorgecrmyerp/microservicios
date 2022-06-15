@@ -3,6 +3,7 @@ package com.jgr.microservicio.app.examenes.models.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,13 +37,14 @@ public class Examen {
 	//un examen n preguntas,lectura perezosa,las actualizaciones y creacion todas juntas(examen-pregunta)
 	//y que borre las preguntas que queden huerfanas.Relacion bidireccional
 	//el ignoreproperties es para que no se embucle ya que aqui haria el get de preguntas y en preguntas el de examen
-	
+	//el allowsetters es para que oculte la relacion,pero si permita la relacion inversa
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,orphanRemoval=true,mappedBy="examen")
-	@JsonIgnoreProperties(value= {"examen"})
+	@JsonIgnoreProperties(value= {"examen"},allowSetters=true)
 	private List<Pregunta> preguntas; 
 
 	public Examen() {
-		super();
+		
+		this.preguntas = new ArrayList<>();
 	}
 	
 	
@@ -113,10 +115,40 @@ public class Examen {
 		 * @param preguntas the preguntas to set
 		 */
 		public void setPreguntas(List<Pregunta> preguntas) {
-			this.preguntas = preguntas;
+			//reiniciamos preguntas
+			this.preguntas.clear();
+			//agregamos examen a cada pregunta
+			//preguntas.forEach(p->{this.addPregunta(p);});
+			//tb lo podemos poner asi
+			preguntas.forEach(this::addPregunta);
+		}
+		
+		
+
+		public void addPregunta(Pregunta pregunta) {
+			this.preguntas.add(pregunta);
+			pregunta.setExamen(this); //relacionamos la pregunta con este examen para que no quede huerfano
+		}
+			
+		public void removePregunta(Pregunta pregunta) {
+			this.preguntas.remove(pregunta);
+			pregunta.setExamen(null); //damos de baja la relacion
+			
 		}
 
 
-	
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (!(obj instanceof Examen))
+				return false;
+			
+			Examen other = (Examen) obj;
+			return this.id != null && this.id.equals(other.getId());
+		}
+		
+		
+		
 
 }
