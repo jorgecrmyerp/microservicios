@@ -1,7 +1,5 @@
 package com.jgr.microservicio.app.examenes.services;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.jgr.microservicio.app.examenes.models.entity.Examen;
