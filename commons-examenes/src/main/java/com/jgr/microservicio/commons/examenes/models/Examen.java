@@ -1,4 +1,4 @@
-package com.jgr.microservicio.app.examenes.models.entity;
+package com.jgr.microservicio.commons.examenes.models;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @Entity
 @Table(name = "examenes")

@@ -19,10 +19,15 @@
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
-	<!-- IMPORTAMOS COMMONSERVICE PARA PODER USARLO EN LA CAPA DE SERVICIOS -->
+		<!-- IMPORTAMOS COMMONSERVICE PARA PODER USARLO EN LA CAPA DE SERVICIOS -->
 		<dependency>
 			<groupId>com.jgr.microservicio.commons</groupId>
 			<artifactId>commons-microservicios</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jgr.microservicio.commons.examenes</groupId>
+			<artifactId>commons-examenes</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
