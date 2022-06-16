@@ -15,9 +15,8 @@ import javax.persistence.TemporalType;
 //solo vamos a necesitar el jpa para las anotaciones,es un servicio de libreria,no se va a
 //ejecutar como hacemos con cursos o con usuarios
 
-
 @Entity
-@Table(name="alumnos")
+@Table(name = "alumnos")
 //equivalente a usar @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstrutor 
 //@Data
 //@Slf4j Creates log = org.slf4j.LoggerFactory.getLogger(LogExample.class);
@@ -30,20 +29,18 @@ public class Alumno {
 	private String nombre;
 	private String apellido;
 	private String email;
-	@Column(name="create_at")
-	@Temporal(TemporalType.TIMESTAMP)//es un timestamp
+	@Column(name = "create_at")
+	@Temporal(TemporalType.TIMESTAMP) // es un timestamp
 	private Date createAt;
-	
-	
-	
+
 	public Alumno() {
 		super();
 	}
 
-	//para que guarde la fecha actual
-	@PrePersist	
+	// para que guarde la fecha actual
+	@PrePersist
 	public void prePersist() {
-		this.createAt= new Date();
+		this.createAt = new Date();
 	}
 
 	/**
@@ -118,17 +115,18 @@ public class Alumno {
 
 	@Override
 	public boolean equals(Object obj) {
-		
-		if(this==obj) {return true;}
-		
-		if (!(obj instanceof Alumno)){return false;}
-		
-		//convertimos de obj a alumno		
-		Alumno a =(Alumno) obj;	
-		return this.id!=null && this.id.equals(a.getId());
+
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof Alumno)) {
+			return false;
+		}
+
+		// convertimos de obj a alumno
+		Alumno a = (Alumno) obj;
+		return this.id != null && this.id.equals(a.getId());
 	}
 
-	
-
-	
 }
