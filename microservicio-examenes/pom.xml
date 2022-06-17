@@ -26,6 +26,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+		<!-- RELACIONAMOS CON LOS OBJETOS EXAMEN QUE HEMOS SACADO AL COMMONS-EXAMENES -->
 			<groupId>com.jgr.microservicio.commons.examenes</groupId>
 			<artifactId>commons-examenes</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

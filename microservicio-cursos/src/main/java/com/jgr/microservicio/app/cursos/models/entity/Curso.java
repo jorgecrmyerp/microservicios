@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -17,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
+import com.jgr.microservicio.commons.examenes.models.entity.Examen;
 
 @Entity
 @Table(name="cursos")
@@ -37,8 +39,14 @@ public class Curso {
 	@OneToMany(fetch=FetchType.LAZY)
 	private List<Alumno> alumnos;
 	
+	//RELACION CON EXAMENES
+	//1examen-ncursos y 1curso-nexamenes
+	@ManyToMany(fetch=FetchType.LAZY)
+	private List<Examen> examenes;
+	
 	public Curso() {
 		this.alumnos= new ArrayList<>();
+		this.examenes= new ArrayList<>();
 	}
 
 	/**
@@ -103,7 +111,21 @@ public class Curso {
 		this.alumnos = alumnos;
 	}
 
+	/**
+	 * @param alumnos the alumnos to set
+	 */
+	public void setExamenes(List<Examen> examenes) {
+		this.examenes=examenes;
+	}
+
 	
+	/**
+	 * @return the examenes
+	 */
+	public List<Examen> getExamenes() {
+		return examenes;
+	}
+
 	/**
 	 * @param alumno the alumno to set
 	 */
@@ -112,11 +134,22 @@ public class Curso {
 	}
 	
 	/**
+	 * @param alumno the alumno to set
+	 */
+	public void addExamen(Examen examen) {
+		this.examenes.add(examen);
+	}
+	
+	/**
 	 * @param alumno the alumno to remove
 	 * para hacerlo bien tenemos que sobreescribir el equals en alumno,que compare por id
 	 */
 	public void removeAlumno(Alumno alumno) {
 		this.alumnos.remove(alumno);
+	}
+	
+	public void removeExamen(Examen examen) {
+		this.examenes.remove(examen);
 	}
 
 }

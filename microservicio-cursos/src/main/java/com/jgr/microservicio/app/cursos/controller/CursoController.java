@@ -15,18 +15,16 @@ import com.jgr.microservicio.app.cursos.models.entity.Curso;
 import com.jgr.microservicio.app.cursos.services.ICursoService;
 import com.jgr.microservicio.commons.alumnos.models.entity.Alumno;
 import com.jgr.microservicio.commons.controllers.CommonController;
+import com.jgr.microservicio.commons.examenes.models.entity.Examen;
 
 //IGUAL QUE USUARIOS,REVISAR COMENTARIOS
 
 @RestController
 public class CursoController extends CommonController<Curso, ICursoService> {
 
-	
-	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editar(@RequestBody Curso curso, @PathVariable Long id) {
 
-		
 		// EL SERVICE VIENE DESDE COMMONCONTROLLER
 		Optional<Curso> o = this.service.findById(id);
 
@@ -43,30 +41,28 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 
 	}
 
-	
-		//localhost:8090/api/cursos/3/asignar-alumnos
+	// localhost:8090/api/cursos/3/asignar-alumnos
 	@PutMapping("/{id}/asignar-alumnos")
-	public ResponseEntity<?> asignarAlumnos(@RequestBody List<Alumno> alumnos,@PathVariable Long id) {
+	public ResponseEntity<?> asignarAlumnos(@RequestBody List<Alumno> alumnos, @PathVariable Long id) {
 		Optional<Curso> o = this.service.findById(id);
 
 		System.out.println("put id->" + id);
-
 
 		if (!o.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		Curso cursoDB = o.get();
-		//como es curso el que tiene un array de alumnos, vamos guardandolos ahi
-		alumnos.forEach(a->{
+		// como es curso el que tiene un array de alumnos, vamos guardandolos ahi
+		alumnos.forEach(a -> {
 			cursoDB.addAlumno(a);
-			});
-		
+		});
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cursoDB));
-		}
-	
-	//localhost:8090/api/cursos/1/eliminar-alumno
+	}
+
+	// localhost:8090/api/cursos/1/eliminar-alumno
 	@PutMapping("/{id}/eliminar-alumno")
-	public ResponseEntity<?> eliminarAlumno(@RequestBody Alumno alumno,@PathVariable Long id) {
+	public ResponseEntity<?> eliminarAlumno(@RequestBody Alumno alumno, @PathVariable Long id) {
 		Optional<Curso> o = this.service.findById(id);
 
 		System.out.println("put id->" + id);
@@ -77,20 +73,53 @@ public class CursoController extends CommonController<Curso, ICursoService> {
 		}
 		Curso cursoDB = o.get();
 		cursoDB.removeAlumno(alumno);
-		
+
 		return ResponseEntity.status(HttpStatus.OK).body(service.save(cursoDB));
-		}
-	
-	
-	//localhost:8090/api/cursos/busca-curso-alumno/1
+	}
+
+	// localhost:8090/api/cursos/busca-curso-alumno/1
 	@GetMapping("busca-curso-alumno/{id}")
 	public ResponseEntity<?> buscarCursoDeAlumnoporId(@PathVariable Long id) {
-		
+
 		Curso curso = service.findCursoByAlumnoId(id);
-		
+
 		return ResponseEntity.ok(curso);
 	}
 
-	
-	
+	// localhost:8090/api/cursos/3/asignar-examenes
+	@PutMapping("/{id}/asignar-examenes")
+	public ResponseEntity<?> asignarExamenes(@RequestBody List<Examen> examenes, @PathVariable Long id) {
+		Optional<Curso> o = this.service.findById(id);
+
+		System.out.println("put id->" + id);
+
+		if (!o.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		Curso cursoDB = o.get();
+		// como es curso el que tiene un array de examenes, vamos guardandolos ahi
+		examenes.forEach(a -> {
+			cursoDB.addExamen(a);
+		});
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cursoDB));
+	}
+
+	//localhost:8090/api/cursos/1/eliminar-examen
+	@PutMapping("/{id}/eliminar-examen")
+	public ResponseEntity<?> eliminarExamen(@RequestBody Examen examen, @PathVariable Long id) {
+		Optional<Curso> o = this.service.findById(id);
+
+		System.out.println("put id->" + id);
+		// si no lo encuentra devuelve not found
+
+		if (!o.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		Curso cursoDB = o.get();
+		cursoDB.removeExamen(examen);
+
+		return ResponseEntity.status(HttpStatus.OK).body(service.save(cursoDB));
+	}
+
 }

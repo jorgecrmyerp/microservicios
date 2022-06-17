@@ -1,4 +1,4 @@
-package com.jgr.microservicio.commons.examenes.models;
+package com.jgr.microservicio.commons.examenes.models.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-
 
 @Entity
 @Table(name = "examenes")
@@ -45,6 +43,8 @@ public class Examen {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "examen")
 	@JsonIgnoreProperties(value = { "examen" }, allowSetters = true)
 	private List<Pregunta> preguntas;
+	
+	
 
 	public Examen() {
 

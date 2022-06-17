@@ -27,13 +27,15 @@
 			<artifactId>commons-microservicios</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR DE ALUMNOS YA QUE VAN A ESTAR RELACIONADOS-->
+		<!-- INCLUYO COMO DEPENDENCIA LOS POJO DE ALUMNOS YA QUE VAN A ESTAR RELACIONADOS,
+		NADA MAS QUE LA CLASE,SE DESACOPLA TODO LO POSIBLE-->
 		<dependency>
 			<groupId>com.jgr.microservicio.commons.alumnos</groupId>
 			<artifactId>commons-alumnos</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- INCLUYO COMO DEPENDENCIA EL CONTROLADOR DE EXAMENES YA QUE VAN A ESTAR RELACIONADOS-->
+		<!-- INCLUYO COMO DEPENDENCIA LOS POJO DE EXAMENES YA QUE VAN A ESTAR RELACIONADOS NADA MAS QUE LA CLASE,
+		SE DESACOPLA TODO LO POSIBLE-->
 		<dependency>
 			<groupId>com.jgr.microservicio.commons.examenes</groupId>
 			<artifactId>commons-examenes</artifactId>
